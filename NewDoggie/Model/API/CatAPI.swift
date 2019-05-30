@@ -16,11 +16,11 @@ class CatAPI {
     
     enum endpoint: String {
         case randomImage = "https://api.thecatapi.com/v1/images/search"
-        
         var url: URL {
             return URL(string: self.rawValue)!
         }
     }
+    
     
     class func requestCatImage(url: URL, completionHandler: @escaping (UIImage?, Error?) -> Void) {
         let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
@@ -34,6 +34,33 @@ class CatAPI {
         task.resume()
     }
     
+    class func requestRandomCatImage(completionHandler: @escaping (String?, Error?) -> Void){
+        let randomImage = endpoint.randomImage.url
+        var request = URLRequest(url: randomImage)
+        request.httpMethod = "GET"
+        request.addValue(catAPIKey, forHTTPHeaderField: "x-api-key")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let task = URLSession.shared.dataTask(with: randomImage) { (data, response , error) in
+            guard let data = data else {
+                completionHandler(nil, error)
+                print("There was no data recieved")
+                return
+            }
+            print(data)
+            do{
+                var returnData = try JSONSerialization.jsonObject(with: data, options: []) as! [[String:AnyObject]]
+                
+                let url = returnData[0]["url"] as! String
+                completionHandler(url, nil)
+            }catch {
+                print(error.localizedDescription)
+                completionHandler(nil,error)
+                
+            }
+        }
+        task.resume()
+    }
+    /*
     class func requestRandomCatImage(completionHandler: @escaping (String?, String?, Error?) -> Void){
         let randomImage = endpoint.randomImage.url
         var request = URLRequest(url: randomImage)
@@ -46,13 +73,11 @@ class CatAPI {
                 print("There was no data recieved")
                 return
             }
-            print(data)
             do{
                 var ser = try JSONSerialization.jsonObject(with: data, options: []) as! [[String:AnyObject]]
                 if let url = ser[0]["url"] as? String {
                     
                     let last4 = String(url.suffix(3))
-                    print(last4)
                     if last4 == "gif"{
                         var gif = "gif"
                         completionHandler(gif, url, nil)
@@ -67,7 +92,7 @@ class CatAPI {
             }
         }
         task.resume()
-    }
+    }*/
     
 }
 

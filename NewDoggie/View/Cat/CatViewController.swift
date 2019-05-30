@@ -18,99 +18,136 @@ class CatViewController: UIViewController {
 
 
     //MARK: Properties
-    var catImages: [UIImage]?
+    var catImages: [CatImage]?
+    
+    private let itemsPerRow: CGFloat = 2
+    private let sectionInsets = UIEdgeInsets(top: 5.0,
+                                             left: 10.0,
+                                             bottom: 5.0,
+                                             right: 10.0)
     
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("View did load")
         collectionImageView.delegate = self
         collectionImageView.dataSource = self
-        
-        // Do any additional setup after loading the view.
+        //loadImages()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        populateCatImages()
+        print("View will appear")
     }
     
-    func populateCatImages(){
-        for i in 0...30 {
-            getCatImage()
-        }
+    func loadImages(){
+        print("Images loaded")
+        print(catImages?.count)
+        collectionImageView.reloadData()
     }
     
-    func handleCatImageResponse(image: UIImage?, error: Error?){
-        catImages?.append(image!)
-    }
-    
-    func handleCatGifResponse(image: UIImage){
-        catImages?.append(image)
-    }
-    
-    func getCatImage(){
-        CatAPI.requestRandomCatImage { (type, url, error)  in
-            guard let url = url else {
-                print("No URl")
-                return
-            }
-            print(url)
-            if type == "gif"{
-                let gif = UIImage.gifImageWithURL(url)
-                self.handleCatGifResponse(image: gif!)
-            }else {
-                guard let temp = URL(string: url) else {
-                    return
-                }
-                CatAPI.requestCatImage(url: temp, completionHandler: self.handleCatImageResponse(image:error:))
-            }
-        }
-    }
 }
 
     //MARK: CollectionView Extension
 extension CatViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //TODO: Return number of cat images.
-        return 30
+
+            return catImages?.count ?? 20
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reusableID, for: indexPath) as! CatColView
-        cell.activityIndicator.startAnimating()
-        DispatchQueue.main.async {
-        CatAPI.requestRandomCatImage { (type, url, error)  in
-            guard let url = url else {
-                print("No URl")
-                return
-            }
-            print(url)
-            if type == "gif"{
-                let gif = UIImage.gifImageWithURL(url)
+            cell.startLoading()
+        
+        if let image = catImages?[indexPath.row] {
+            
+            switch self.decideImageType(string: image.type) {
+            case true:
+                let gif = UIImage.gifImageWithURL(image.url)
                 DispatchQueue.main.async {
-                    cell.activityIndicator.stopAnimating()
+                    cell.stopLoading()
                     cell.imageView.image = gif
                 }
-            }else {
-                var temp = URL(string: url)
-                CatAPI.requestCatImage(url: temp!, completionHandler: { (image, error) in
+            case false:
+                DispatchQueue.main.async {
+                    cell.imageView.image = image.image
+                    cell.stopLoading()
+                }
+                
+            }
+            print(" Image is real")
+        } else {
+            CatAPI.requestRandomCatImage { (data, error) in
+                let url = URL(string: data!)
+                let last4 = String(data!.suffix(3))
+                CatAPI.requestCatImage(url: url!, completionHandler: { (image, error) in
                     guard let image = image else {
+                        print("Error:\(error)")
                         return
                     }
-                    DispatchQueue.main.async {
-                    cell.activityIndicator.stopAnimating()
-                        cell.imageView.image = image
+                    let catAsset = CatImage(type: last4, url: url!, image: image)
+                    
+                    self.catImages?.append(catAsset)
+                    
+                    switch self.decideImageType(string: catAsset.type) {
+                    case true:
+                        let gif = UIImage.gifImageWithURL(catAsset.url)
+                        DispatchQueue.main.async {
+                            cell.stopLoading()
+                            cell.imageView.image = gif
+                        }
+                    case false:
+                        DispatchQueue.main.async {
+                            cell.imageView.image = catAsset.image
+                            cell.stopLoading()
+                        }
+                        
                     }
                 })
             }
         }
-            
-        }
-
+        
+        
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        // Begin asynchronously fetching data for the requested index paths.
+        
+        
+    }
+
+    
+    func decideImageType(string: String)-> Bool{
+        return ( string == "gif")
     }
 }
 
 //MARK: Pull to reload
-extension CatViewController {
+extension CatViewController: UICollectionViewDelegateFlowLayout {
+
     
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        //2
+        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+        let availableWidth = view.frame.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+        
+        return CGSize(width: widthPerItem, height: widthPerItem)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets.left
+    }
 }

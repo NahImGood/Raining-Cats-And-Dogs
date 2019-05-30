@@ -13,7 +13,7 @@ class DogViewController: UIViewController {
     //MARK: Properties
     private var reuseIdentifier = "dogcell"
     var breeds: [String]  = []
-    var imagePickerRow: Int = 0
+    var imagePickerRow: Int?
     
     //MARK: Outlets
     @IBOutlet weak var collectionImageView: UICollectionView!
@@ -58,7 +58,7 @@ extension DogViewController: UICollectionViewDataSource, UICollectionViewDelegat
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! DogColView
         cell.activityIndicator.startAnimating()
         if imagePickerRow != nil {
-        DogAPI.requestRandomImage(breed: breeds[imagePickerRow]) { (image, error) in
+        DogAPI.requestRandomImage(breed: breeds[imagePickerRow!]) { (image, error) in
             guard let image = image?.message else {
                 return
             }
