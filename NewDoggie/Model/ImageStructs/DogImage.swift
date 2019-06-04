@@ -7,9 +7,9 @@
 //
 
 import Foundation
+import UIKit
 
 struct DogImage: Codable {
-    
     let status: String
     let message: String
 
@@ -17,4 +17,8 @@ struct DogImage: Codable {
 
 struct AllImages: Codable {
     let message: [URL]
+}
+
+struct DogAsset {
+    var image: UIImage
 }

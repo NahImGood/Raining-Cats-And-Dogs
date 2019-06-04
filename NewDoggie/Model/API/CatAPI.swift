@@ -21,6 +21,17 @@ class CatAPI {
         }
     }
     
+    class func completeCatDataCall(handler: @escaping (CatImage)->Void){
+        requestRandomCatImage { (image, url, error) in
+
+            let last4 = String(url!.suffix(3))
+            let url2 = URL(string: url!)
+            let catAsset = CatImage(type: last4, url: url2!, image: image!)
+            handler(catAsset)
+        }
+
+    }
+    
     
     class func requestCatImage(url: URL, completionHandler: @escaping (UIImage?, Error?) -> Void) {
         let task = URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
@@ -34,15 +45,15 @@ class CatAPI {
         task.resume()
     }
     
-    class func requestRandomCatImage(completionHandler: @escaping (String?, Error?) -> Void){
+    class func requestRandomCatImage(completionHandler: @escaping (UIImage?, String?, Error?) -> Void){
         let randomImage = endpoint.randomImage.url
         var request = URLRequest(url: randomImage)
         request.httpMethod = "GET"
         request.addValue(catAPIKey, forHTTPHeaderField: "x-api-key")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        let task = URLSession.shared.dataTask(with: randomImage) { (data, response , error) in
+        let task = URLSession.shared.dataTask(with: request) { (data, response , error) in
             guard let data = data else {
-                completionHandler(nil, error)
+                completionHandler(nil, nil, error)
                 print("There was no data recieved")
                 return
             }
@@ -50,16 +61,24 @@ class CatAPI {
             do{
                 var returnData = try JSONSerialization.jsonObject(with: data, options: []) as! [[String:AnyObject]]
                 
-                let url = returnData[0]["url"] as! String
-                completionHandler(url, nil)
+                let data2 = returnData[0]["url"] as! String
+                let url = URL(string: data2)
+                requestCatImage(url: url!, completionHandler: { (image, error) in
+                    guard let image = image else {
+                        return
+                    }
+                    completionHandler(image, data2, nil)
+                })
             }catch {
                 print(error.localizedDescription)
-                completionHandler(nil,error)
+                completionHandler(nil, nil,error)
                 
             }
         }
         task.resume()
     }
+    
+    
     /*
     class func requestRandomCatImage(completionHandler: @escaping (String?, String?, Error?) -> Void){
         let randomImage = endpoint.randomImage.url
@@ -92,8 +111,8 @@ class CatAPI {
             }
         }
         task.resume()
-    }*/
-    
+    }
+    */
 }
 
 

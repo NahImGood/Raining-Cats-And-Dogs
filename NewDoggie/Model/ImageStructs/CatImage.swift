@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+
 struct CatImage {
     let type: String
     let url: URL
@@ -22,10 +23,11 @@ struct CatImage {
 }
 
 
+/*
 class CatImageAsset {
     
     let indexPath: Int
-    let url: URL
+    var url: URL
     let session: URLSession
     let delegate: ImageTaskDownloadedDelegate
     
@@ -37,18 +39,21 @@ class CatImageAsset {
     private var isDownloading = false
     private var isFinishedDownloading = false
     
-    init(position: Int, url: URL, session: URLSession, delegate: ImageTaskDownloadedDelegate) {
-        self.position = position
-        self.url = url
-        self.session = session
-        self.delegate = delegate
-    }
     
-    func resume() {
-        if !isDownloading && !isFinishedDownloading {
-            isDownloading = true
-            
-            
+    func downLoadImage() {
+        if !isFinishedDownloading {
+            CatAPI.requestRandomCatImage { (data, error) in
+                let url2 = URL(string: data!)
+                let gifType = String(data!.suffix(3))
+                CatAPI.requestCatImage(url: url2!, completionHandler: { (image, error) in
+                    guard let image = image else {
+                        print("Error:\(error)")
+                        return
+                    }
+                    self.url = url2!
+                    self.image = image
+                })
+            }
         }
     }
     
@@ -68,3 +73,4 @@ class CatImageAsset {
     
     
 }
+*/

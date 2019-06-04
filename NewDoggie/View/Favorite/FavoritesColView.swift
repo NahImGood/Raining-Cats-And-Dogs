@@ -1,24 +1,20 @@
 //
-//  CatColView.swift
+//  FavoritesColView.swift
 //  NewDoggie
 //
-//  Created by Eli Warner on 4/20/19.
+//  Created by Eli Warner on 6/1/19.
 //  Copyright © 2019 EGW. All rights reserved.
 //
 
 import UIKit
 
-class CatColView: UICollectionViewCell {
+class FavoritesColView: UICollectionViewCell {
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    let imageLoading = CGFloat(0.5)
-    
-
     func startLoading(){
         activityIndicator.startAnimating()
-        imageView.alpha = imageLoading
     }
     
     func stopLoading(){
