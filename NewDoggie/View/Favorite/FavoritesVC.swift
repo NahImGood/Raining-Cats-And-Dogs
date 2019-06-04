@@ -154,7 +154,6 @@ class FavoritesVC: UIViewController, UICollectionViewDataSource, UICollectionVie
 
     }
 
-
 }
 
 //MARK: Pull to reload

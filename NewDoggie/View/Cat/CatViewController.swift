@@ -37,13 +37,6 @@ class CatViewController: UIViewController {
         activity()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "DetailView" {
-            var vc = segue.destination as! DetailVC
-            vc.catImage = selectedImage
-        }
-    }
-    
     func activity(){
         let fadeView:UIView = UIView()
         

@@ -11,8 +11,11 @@ import UIKit
 class DetailVC: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
-    var catImage: CatImage?
+    var image: UIImage?
     
+    override func viewDidLoad() {
+        imageView.image = image
+    }
     
 }
 
