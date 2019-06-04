@@ -68,11 +68,21 @@ class FavoritesVC: UIViewController, UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch catOrDog {
         case true:
-            print(catOrDog)
-            print(dogImages.count)
-            return dogImages.count
+            if dogImages.count == 0 {
+                self.favCollectionView.setEmptyMessage("You don't seem to have any saved dog pics!")
+                return dogImages.count
+            } else {
+                self.favCollectionView.setEmptyMessage("")
+                return dogImages.count
+            }
         case false:
-            return catImages.count
+            if catImages.count == 0 {
+                self.favCollectionView.setEmptyMessage("You don't seem to have any saved cat pics!")
+                return catImages.count
+            } else {
+                self.favCollectionView.setEmptyMessage("")
+                return catImages.count
+            }
         }
     }
     

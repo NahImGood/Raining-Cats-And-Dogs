@@ -133,7 +133,9 @@ extension DogViewController: UICollectionViewDataSource, UICollectionViewDelegat
         } else {
             self.collectionImageView.setEmptyMessage("")
             return dogImages.count
-        }    }
+        }
+        
+    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         DogAPI.requestBreedList(completionHandler: handleBreedsListResponse(breeds:error:))

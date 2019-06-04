@@ -11,7 +11,6 @@
 		842DA4AE2289F18200F2D2B4 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DA4AD2289F18200F2D2B4 /* DataManager.swift */; };
 		844E7433222E068B003F3E4E /* CatImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844E7432222E068B003F3E4E /* CatImage.swift */; };
 		8453C0B72228C14B002FF3C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8453C0B62228C14B002FF3C8 /* AppDelegate.swift */; };
-		8453C0B92228C14B002FF3C8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8453C0B82228C14B002FF3C8 /* ViewController.swift */; };
 		8453C0BC2228C14B002FF3C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8453C0BA2228C14B002FF3C8 /* Main.storyboard */; };
 		8453C0BF2228C14B002FF3C8 /* NewDoggie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8453C0BD2228C14B002FF3C8 /* NewDoggie.xcdatamodeld */; };
 		8453C0C12228C14E002FF3C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8453C0C02228C14E002FF3C8 /* Assets.xcassets */; };
@@ -22,8 +21,6 @@
 		848A831622A6D22D0052C089 /* ThreadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A831522A6D22D0052C089 /* ThreadHelper.swift */; };
 		84B7C5DF222AF2750017D8DB /* DogApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7C5DE222AF2750017D8DB /* DogApi.swift */; };
 		84B7C5E1222AFAA60017D8DB /* DogImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7C5E0222AFAA60017D8DB /* DogImage.swift */; };
-		84D866BB2233000B00379DCE /* AllImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D866BA2233000B00379DCE /* AllImageViewController.swift */; };
-		84D866BD223317DA00379DCE /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D866BC223317DA00379DCE /* DetailCollectionViewCell.swift */; };
 		84D88304222F0BC8000E2AF8 /* BreedsListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D88303222F0BC8000E2AF8 /* BreedsListResponse.swift */; };
 		84F6395F226B73BE00027600 /* CatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F6395E226B73BE00027600 /* CatViewController.swift */; };
 		84F63961226B748800027600 /* CatColView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F63960226B748800027600 /* CatColView.swift */; };
@@ -38,7 +35,6 @@
 		844E7432222E068B003F3E4E /* CatImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatImage.swift; sourceTree = "<group>"; };
 		8453C0B32228C14B002FF3C8 /* NewDoggie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewDoggie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8453C0B62228C14B002FF3C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8453C0B82228C14B002FF3C8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8453C0BB2228C14B002FF3C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8453C0BE2228C14B002FF3C8 /* NewDoggie.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NewDoggie.xcdatamodel; sourceTree = "<group>"; };
 		8453C0C02228C14E002FF3C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -50,8 +46,6 @@
 		848A831522A6D22D0052C089 /* ThreadHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadHelper.swift; sourceTree = "<group>"; };
 		84B7C5DE222AF2750017D8DB /* DogApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogApi.swift; sourceTree = "<group>"; };
 		84B7C5E0222AFAA60017D8DB /* DogImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogImage.swift; sourceTree = "<group>"; };
-		84D866BA2233000B00379DCE /* AllImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllImageViewController.swift; sourceTree = "<group>"; };
-		84D866BC223317DA00379DCE /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		84D88303222F0BC8000E2AF8 /* BreedsListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsListResponse.swift; sourceTree = "<group>"; };
 		84F6395E226B73BE00027600 /* CatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatViewController.swift; sourceTree = "<group>"; };
 		84F63960226B748800027600 /* CatColView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatColView.swift; sourceTree = "<group>"; };
@@ -99,9 +93,6 @@
 			isa = PBXGroup;
 			children = (
 				8453C0B62228C14B002FF3C8 /* AppDelegate.swift */,
-				84D866BA2233000B00379DCE /* AllImageViewController.swift */,
-				84D866BC223317DA00379DCE /* DetailCollectionViewCell.swift */,
-				8453C0B82228C14B002FF3C8 /* ViewController.swift */,
 				8472B6EE2245B66B003E2B91 /* GifExtension.swift */,
 				84F6395D226B73B300027600 /* View */,
 				84B7C5DD222AF2680017D8DB /* Model */,
@@ -265,9 +256,7 @@
 				842DA4AE2289F18200F2D2B4 /* DataManager.swift in Sources */,
 				84B7C5E1222AFAA60017D8DB /* DogImage.swift in Sources */,
 				84F6396B226F93F200027600 /* DogColView.swift in Sources */,
-				84D866BB2233000B00379DCE /* AllImageViewController.swift in Sources */,
 				848A831622A6D22D0052C089 /* ThreadHelper.swift in Sources */,
-				8453C0B92228C14B002FF3C8 /* ViewController.swift in Sources */,
 				8472B6EF2245B66B003E2B91 /* GifExtension.swift in Sources */,
 				8453C0BF2228C14B002FF3C8 /* NewDoggie.xcdatamodeld in Sources */,
 				84F63964226B770600027600 /* CatAPI.swift in Sources */,
@@ -278,7 +267,6 @@
 				84D88304222F0BC8000E2AF8 /* BreedsListResponse.swift in Sources */,
 				8453C0B72228C14B002FF3C8 /* AppDelegate.swift in Sources */,
 				848A831122A347C70052C089 /* FavoritesVC.swift in Sources */,
-				84D866BD223317DA00379DCE /* DetailCollectionViewCell.swift in Sources */,
 				84F63969226F93A500027600 /* DogViewController.swift in Sources */,
 				840D2A67229F60050015109C /* ImageDownloadDelegate.swift in Sources */,
 			);
