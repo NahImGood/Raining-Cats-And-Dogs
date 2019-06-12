@@ -91,7 +91,7 @@ class DogViewController: UIViewController, UICollectionViewDelegateFlowLayout {
                         print("Error: \(error)")
                         return
                     }
-                    var tempimage = DogAsset(image: response)
+                    let tempimage = DogAsset(image: response)
                     self.dogImages.append(tempimage)
                     if self.dogImages.count > dogCount {
                         DispatchQueue.main.async {
