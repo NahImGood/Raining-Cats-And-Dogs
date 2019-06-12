@@ -119,50 +119,7 @@ class FavoritesVC: UIViewController, UICollectionViewDataSource, UICollectionVie
     }
 
     
-    //MARK - CoreData
-    func setUpCoreData(){
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        let managedContext = appDelegate.persistentContainer.viewContext
-        
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CatData")
-        let dogFetchRequest = NSFetchRequest<NSManagedObject>(entityName: "DogData")
 
-        //Grab CatData
-        do {
-            let results = try? managedContext.fetch(fetchRequest)
-            catImages = []
-            for asset in results as! [NSManagedObject] {
-                let type =  asset.value(forKey: "type") as! String
-                let data = asset.value(forKey: "data") as! Data
-                let url = asset.value(forKey: "url") as! NSURL
-                let catImage = CatImage(type: type, url: url as URL, image: UIImage(data: data)!)
-                catImages.append(catImage)
-            }
-            favCollectionView.reloadData()
-
-            
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-        //Grab Dog Data
-        do {
-            let results = try? managedContext.fetch(dogFetchRequest)
-            dogImages = []
-            for asset in results as! [NSManagedObject] {
-                let image = asset.value(forKey: "data") as! Data
-                let dogAsset = DogAsset(image: UIImage(data: image)!)
-                dogImages.append(dogAsset)
-            }
-            favCollectionView.reloadData()
-
-        } catch let error as NSError {
-            print("Could not fetch. \(error), \(error.userInfo)")
-        }
-
-    }
 
 }
 
@@ -192,4 +149,50 @@ extension FavoritesVC: UICollectionViewDelegateFlowLayout {
         return sectionInsets.left
     }
 
+}
+
+//MARK: = CoreData
+extension FavoritesVC {
+    func setUpCoreData(){
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "CatData")
+        let dogFetchRequest = NSFetchRequest<NSManagedObject>(entityName: "DogData")
+        
+        //Grab CatData
+        do {
+            let results = try? managedContext.fetch(fetchRequest)
+            catImages = []
+            for asset in results as! [NSManagedObject] {
+                let type =  asset.value(forKey: "type") as! String
+                let data = asset.value(forKey: "data") as! Data
+                let url = asset.value(forKey: "url") as! NSURL
+                let catImage = CatImage(type: type, url: url as URL, image: UIImage(data: data)!)
+                catImages.append(catImage)
+            }
+            favCollectionView.reloadData()
+            
+            
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        //Grab Dog Data
+        do {
+            let results = try? managedContext.fetch(dogFetchRequest)
+            dogImages = []
+            for asset in results as! [NSManagedObject] {
+                let image = asset.value(forKey: "data") as! Data
+                let dogAsset = DogAsset(image: UIImage(data: image)!)
+                dogImages.append(dogAsset)
+            }
+            favCollectionView.reloadData()
+            
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+    }
 }

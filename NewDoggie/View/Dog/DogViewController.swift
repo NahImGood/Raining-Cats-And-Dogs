@@ -77,6 +77,7 @@ class DogViewController: UIViewController, UICollectionViewDelegateFlowLayout {
         DogAPI.requestRandomImage { (image, error) in
             guard let image = image?.message else {
                 print(error)
+                self.activityView.stopAnimating()
                 return
             }
             
@@ -96,6 +97,11 @@ class DogViewController: UIViewController, UICollectionViewDelegateFlowLayout {
                     }
                 })
             } else {
+                //Sometimes the url is returned with weird chars like german letters
+                //Its rare, and this secont api call is if the url cant be unwrapped it
+                //calls again and recives a new url. the chance of both being bad is slim
+                //if you replace the bad char with a good one e(with dots over it) for a normal
+                //e it doest load the image. idk its dumb but it works.
                 DogAPI.requestRandomImage(completionHandler: { (image, error) in
                     guard let image = image?.message else {
                         print(error)

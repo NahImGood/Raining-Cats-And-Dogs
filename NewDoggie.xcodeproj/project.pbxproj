@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		840D2A67229F60050015109C /* ImageDownloadDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840D2A66229F60050015109C /* ImageDownloadDelegate.swift */; };
-		842DA4AE2289F18200F2D2B4 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DA4AD2289F18200F2D2B4 /* DataManager.swift */; };
 		844E7433222E068B003F3E4E /* CatImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844E7432222E068B003F3E4E /* CatImage.swift */; };
 		8453C0B72228C14B002FF3C8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8453C0B62228C14B002FF3C8 /* AppDelegate.swift */; };
 		8453C0BC2228C14B002FF3C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8453C0BA2228C14B002FF3C8 /* Main.storyboard */; };
@@ -31,7 +30,6 @@
 
 /* Begin PBXFileReference section */
 		840D2A66229F60050015109C /* ImageDownloadDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadDelegate.swift; sourceTree = "<group>"; };
-		842DA4AD2289F18200F2D2B4 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		844E7432222E068B003F3E4E /* CatImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatImage.swift; sourceTree = "<group>"; };
 		8453C0B32228C14B002FF3C8 /* NewDoggie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewDoggie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8453C0B62228C14B002FF3C8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -126,7 +124,6 @@
 		84B7C5DD222AF2680017D8DB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				842DA4AD2289F18200F2D2B4 /* DataManager.swift */,
 				84F63965226B772300027600 /* API */,
 				84F63966226B775F00027600 /* ImageStructs */,
 			);
@@ -253,7 +250,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				84B7C5DF222AF2750017D8DB /* DogApi.swift in Sources */,
-				842DA4AE2289F18200F2D2B4 /* DataManager.swift in Sources */,
 				84B7C5E1222AFAA60017D8DB /* DogImage.swift in Sources */,
 				84F6396B226F93F200027600 /* DogColView.swift in Sources */,
 				848A831622A6D22D0052C089 /* ThreadHelper.swift in Sources */,

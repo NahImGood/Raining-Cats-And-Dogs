@@ -21,13 +21,19 @@ class CatAPI {
         }
     }
     
-    class func completeCatDataCall(handler: @escaping (CatImage)->Void){
+    class func completeCatDataCall(handler: @escaping (CatImage?, Error?)->Void){
         requestRandomCatImage { (image, url, error) in
 
+            guard let image = image else {
+                print(error?.localizedDescription)
+                //TODO: Alert User there was an error
+                return
+            }
+            
             let last4 = String(url!.suffix(3))
             let url2 = URL(string: url!)
-            let catAsset = CatImage(type: last4, url: url2!, image: image!)
-            handler(catAsset)
+            let catAsset = CatImage(type: last4, url: url2!, image: image)
+            handler(catAsset, nil)
         }
 
     }

@@ -60,7 +60,12 @@ class CatViewController: UIViewController {
     func loadImage(){
         let catCount = catImages.count + 14
         performOn(.Background){
-            CatAPI.completeCatDataCall { (asset) in
+            CatAPI.completeCatDataCall { (asset, error) in
+                guard let asset = asset else {
+                    self.collectionImageView.setEmptyMessage("Trouble loading Data")
+                    print(error?.localizedDescription)
+                    return
+                }
                 self.catImages.append(asset)
                 if self.catImages.count > catCount {
                 DispatchQueue.main.async {
