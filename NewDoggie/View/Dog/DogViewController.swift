@@ -18,6 +18,7 @@ class DogViewController: UIViewController, UICollectionViewDelegateFlowLayout {
     var dogImages: [DogAsset] = []
     var loadingData: Bool = false
     let activityView = UIActivityIndicatorView(style: .gray)
+    let helper = Helper()
 
     private let itemsPerRow: CGFloat = 2
     private let sectionInsets = UIEdgeInsets(top: 5.0,
@@ -37,6 +38,7 @@ class DogViewController: UIViewController, UICollectionViewDelegateFlowLayout {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        helper.checkInternetConnection()
         DogAPI.requestBreedList(completionHandler: handleBreedsListResponse(breeds:error:))
         print(breeds)
     }
@@ -77,7 +79,9 @@ class DogViewController: UIViewController, UICollectionViewDelegateFlowLayout {
         DogAPI.requestRandomImage { (image, error) in
             guard let image = image?.message else {
                 print(error)
-                self.activityView.stopAnimating()
+                self.performOn(.Main){
+                    self.activityView.stopAnimating()
+                }
                 return
             }
             
@@ -97,7 +101,7 @@ class DogViewController: UIViewController, UICollectionViewDelegateFlowLayout {
                     }
                 })
             } else {
-                //Sometimes the url is returned with weird chars like german letters
+                //Sometimes the url is returned with weird chars for german words
                 //Its rare, and this secont api call is if the url cant be unwrapped it
                 //calls again and recives a new url. the chance of both being bad is slim
                 //if you replace the bad char with a good one e(with dots over it) for a normal
@@ -134,7 +138,12 @@ class DogViewController: UIViewController, UICollectionViewDelegateFlowLayout {
 extension DogViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if dogImages.count == 0 {
-            self.collectionImageView.setEmptyMessage("Wait while we load some Puppers! :)")
+            if helper.isInternetAvailable() {
+                self.collectionImageView.setEmptyMessage("Wait while we load some Puppers! :)")
+            } else {
+                self.collectionImageView.setEmptyMessage("No internet Connection :(")
+                self.activityView.stopAnimating()
+            }
             return dogImages.count
         } else {
             self.collectionImageView.setEmptyMessage("")

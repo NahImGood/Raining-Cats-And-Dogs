@@ -9,6 +9,9 @@
 import UIKit
 import CoreData
 
+import SystemConfiguration
+
+
 private var reusableID = "CatColID"
 
 class CatViewController: UIViewController {
@@ -21,6 +24,7 @@ class CatViewController: UIViewController {
     var catImages: [CatImage] = []
     var loadingData: Bool = false
     var selectedImage: CatImage?
+    var helper = Helper()
     
     private let itemsPerRow: CGFloat = 2
     private let sectionInsets = UIEdgeInsets(top: 5.0,
@@ -35,6 +39,12 @@ class CatViewController: UIViewController {
         collectionImageView.dataSource = self
         load20Images()
         activity()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        ///Checks for interentConection
+        helper.checkInternetConnection()
+
     }
     
     func activity(){
@@ -91,7 +101,13 @@ extension CatViewController: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if catImages.count == 0 {
+            if helper.isInternetAvailable() {
             self.collectionImageView.setEmptyMessage("Wait while we load some kitties! :)")
+            } else {
+                //No internet
+                self.collectionImageView.setEmptyMessage("No Internet Connection :(")
+                self.activityView.stopAnimating()
+            }
         return catImages.count
         } else {
             self.collectionImageView.setEmptyMessage("")
@@ -157,7 +173,6 @@ extension CatViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //2
         let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow

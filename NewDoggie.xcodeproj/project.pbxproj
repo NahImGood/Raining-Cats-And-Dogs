@@ -18,6 +18,7 @@
 		848A831122A347C70052C089 /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A831022A347C70052C089 /* FavoritesVC.swift */; };
 		848A831322A347DF0052C089 /* FavoritesColView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A831222A347DF0052C089 /* FavoritesColView.swift */; };
 		848A831622A6D22D0052C089 /* ThreadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A831522A6D22D0052C089 /* ThreadHelper.swift */; };
+		848A835F22B084710052C089 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A835E22B084710052C089 /* Helper.swift */; };
 		84B7C5DF222AF2750017D8DB /* DogApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7C5DE222AF2750017D8DB /* DogApi.swift */; };
 		84B7C5E1222AFAA60017D8DB /* DogImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B7C5E0222AFAA60017D8DB /* DogImage.swift */; };
 		84D88304222F0BC8000E2AF8 /* BreedsListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D88303222F0BC8000E2AF8 /* BreedsListResponse.swift */; };
@@ -42,6 +43,7 @@
 		848A831022A347C70052C089 /* FavoritesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
 		848A831222A347DF0052C089 /* FavoritesColView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesColView.swift; sourceTree = "<group>"; };
 		848A831522A6D22D0052C089 /* ThreadHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadHelper.swift; sourceTree = "<group>"; };
+		848A835E22B084710052C089 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		84B7C5DE222AF2750017D8DB /* DogApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogApi.swift; sourceTree = "<group>"; };
 		84B7C5E0222AFAA60017D8DB /* DogImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogImage.swift; sourceTree = "<group>"; };
 		84D88303222F0BC8000E2AF8 /* BreedsListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsListResponse.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				848A830F22A347AC0052C089 /* Favorite */,
 				84F63967226F938D00027600 /* Dog */,
 				84F63962226B748A00027600 /* Cat */,
+				848A835E22B084710052C089 /* Helper.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				8453C0BF2228C14B002FF3C8 /* NewDoggie.xcdatamodeld in Sources */,
 				84F63964226B770600027600 /* CatAPI.swift in Sources */,
 				84F6395F226B73BE00027600 /* CatViewController.swift in Sources */,
+				848A835F22B084710052C089 /* Helper.swift in Sources */,
 				848A831322A347DF0052C089 /* FavoritesColView.swift in Sources */,
 				844E7433222E068B003F3E4E /* CatImage.swift in Sources */,
 				84F63961226B748800027600 /* CatColView.swift in Sources */,
