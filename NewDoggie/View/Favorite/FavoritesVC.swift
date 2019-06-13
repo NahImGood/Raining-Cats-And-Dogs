@@ -9,11 +9,13 @@
 import UIKit
 import CoreData
 
-class FavoritesVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class FavoritesVC: DraggableViewController , UICollectionViewDataSource, UICollectionViewDelegate {
 
     //MARK - Variables
     var catImages: [CatImage] = []
     var dogImages: [DogAsset] = []
+    var detailVCPassedAssetCat: CatImage?
+    var detailVCPassedAssetDog: DogAsset?
     var catOrDog = false //False for cat, true for dog
     private let itemsPerRow: CGFloat = 2
     private let sectionInsets = UIEdgeInsets(top: 5.0,
@@ -42,6 +44,7 @@ class FavoritesVC: UIViewController, UICollectionViewDataSource, UICollectionVie
         setUpCoreData()
         setUpCollectionView()
         setUPButtonName()
+        LongPressPopUpView(view: favCollectionView)
         // Do any additional setup after loading the view.
     }
     
@@ -125,6 +128,53 @@ class FavoritesVC: UIViewController, UICollectionViewDataSource, UICollectionVie
 
 //MARK: Pull to reload
 extension FavoritesVC: UICollectionViewDelegateFlowLayout {
+    
+    //MARK: - Longpress Detail
+    //Set up of longpress function for implementaion in ViewDidLoad
+    func LongPressPopUpView(view: UIView) {
+        let longPressPopUp = UILongPressGestureRecognizer(target: self, action: #selector(longPress))
+        longPressPopUp.delegate = self
+        longPressPopUp.delaysTouchesBegan = true
+        favCollectionView.addGestureRecognizer(longPressPopUp)
+        
+        longPressPopUp.minimumPressDuration = 0.5
+        
+    }
+    
+    //What the long press func gets whe pressed
+    @objc func longPress(sender: UITapGestureRecognizer){
+        let location = sender.location(in: favCollectionView)
+        let indexPath = favCollectionView.indexPathForItem(at: location)
+        
+        guard let row = indexPath?.row else {
+            return
+        }
+        
+        if sender.state == .began {// same for other states .failed .cancelled {
+            switch catOrDog {
+            case true:
+                detailVCPassedAssetDog = dogImages[row]
+                performSegue(withIdentifier: "detailVC", sender: nil)
+
+            case false:
+                detailVCPassedAssetCat = catImages[row]
+                performSegue(withIdentifier: "detailVC", sender: nil)
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detailVC" {
+            let vc = segue.destination as! DetailVC
+            switch catOrDog {
+            case true:
+                vc.dogAsset = detailVCPassedAssetDog
+                
+            case false:
+                vc.catAsset = detailVCPassedAssetCat
+            }
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,

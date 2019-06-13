@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class DogViewController: UIViewController, UICollectionViewDelegateFlowLayout {
+class DogViewController: DraggableViewController, UICollectionViewDelegateFlowLayout {
 
     //MARK: Properties
     private var reuseIdentifier = "dogcell"
@@ -19,6 +19,7 @@ class DogViewController: UIViewController, UICollectionViewDelegateFlowLayout {
     var loadingData: Bool = false
     let activityView = UIActivityIndicatorView(style: .gray)
     let helper = Helper()
+    var detailVCPassedAsset: DogAsset?
 
     private let itemsPerRow: CGFloat = 2
     private let sectionInsets = UIEdgeInsets(top: 5.0,
@@ -34,6 +35,7 @@ class DogViewController: UIViewController, UICollectionViewDelegateFlowLayout {
         super.viewDidLoad()
         initializers()
         load20Images()
+        LongPressPopUpView(view: collectionImageView)
         // Do any additional setup after loading the view.
     }
     
@@ -189,6 +191,41 @@ extension DogViewController: UICollectionViewDataSource, UICollectionViewDelegat
         }
     }
     
+    //MARK: - Longpress Detail
+    //Set up of longpress function for implementaion in ViewDidLoad
+    func LongPressPopUpView(view: UIView) {
+        let longPressPopUp = UILongPressGestureRecognizer(target: self, action: #selector(longPress))
+        longPressPopUp.delegate = self
+        longPressPopUp.delaysTouchesBegan = true
+        collectionImageView.addGestureRecognizer(longPressPopUp)
+        
+        longPressPopUp.minimumPressDuration = 0.5
+        
+    }
+    
+    //What the long press func gets whe pressed
+    @objc func longPress(sender: UITapGestureRecognizer){
+        let location = sender.location(in: collectionImageView)
+        let indexPath = collectionImageView.indexPathForItem(at: location)
+        
+        guard let row = indexPath?.row else {
+            return
+        }
+        
+        if sender.state == .began {// same for other states .failed .cancelled {
+            detailVCPassedAsset = dogImages[row]
+            performSegue(withIdentifier: "detailVC", sender: nil)
+        }
+        //Selected Image for pass
+    }
+    
+    //MARK: - Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detailVC" {
+            let vc = segue.destination as! DetailVC
+            vc.dogAsset = detailVCPassedAsset
+        }
+    }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,

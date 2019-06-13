@@ -14,7 +14,7 @@ import SystemConfiguration
 
 private var reusableID = "CatColID"
 
-class CatViewController: UIViewController {
+class CatViewController: DraggableViewController {
 
     //MARK: Outlets
     @IBOutlet weak var collectionImageView: UICollectionView!
@@ -25,6 +25,7 @@ class CatViewController: UIViewController {
     var loadingData: Bool = false
     var selectedImage: CatImage?
     var helper = Helper()
+    var detailVCPassedAsset: CatImage?
     
     private let itemsPerRow: CGFloat = 2
     private let sectionInsets = UIEdgeInsets(top: 5.0,
@@ -32,13 +33,14 @@ class CatViewController: UIViewController {
                                              bottom: 5.0,
                                              right: 10.0)
     
-    //MARK: Lifecycle
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionImageView.delegate = self
         collectionImageView.dataSource = self
         load20Images()
         activity()
+        LongPressPopUpView(view: collectionImageView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,7 +90,7 @@ class CatViewController: UIViewController {
     }
 }
 
-    //MARK: CollectionView Extension
+    //MARK: - CollectionView Extension
 extension CatViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -167,7 +169,40 @@ extension CatViewController: UICollectionViewDelegate, UICollectionViewDataSourc
 }
 
 extension CatViewController: UICollectionViewDelegateFlowLayout {
+   
+    //MARK: - Longpress Detail
+    //Set up of longpress function for implementaion in ViewDidLoad
+    func LongPressPopUpView(view: UIView) {
+        let longPressPopUp = UILongPressGestureRecognizer(target: self, action: #selector(longPress))
+        longPressPopUp.delegate = self
+        longPressPopUp.delaysTouchesBegan = true
+        collectionImageView.addGestureRecognizer(longPressPopUp)
 
+        longPressPopUp.minimumPressDuration = 0.5
+
+    }
+    
+    //What the long press func gets whe pressed
+    @objc func longPress(sender: UITapGestureRecognizer){
+        let location = sender.location(in: collectionImageView)
+        let indexPath = collectionImageView.indexPathForItem(at: location)
+        
+        guard let row = indexPath?.row else {
+            return
+        }
+
+        if sender.state == .began {
+            detailVCPassedAsset = catImages[row]
+            performSegue(withIdentifier: "detailVC", sender: nil)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detailVC" {
+            let vc = segue.destination as! DetailVC
+            vc.catAsset = detailVCPassedAsset
+        }
+    }
     
     
     func collectionView(_ collectionView: UICollectionView,

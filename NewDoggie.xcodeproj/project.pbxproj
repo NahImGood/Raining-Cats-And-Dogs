@@ -14,6 +14,8 @@
 		8453C0BF2228C14B002FF3C8 /* NewDoggie.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8453C0BD2228C14B002FF3C8 /* NewDoggie.xcdatamodeld */; };
 		8453C0C12228C14E002FF3C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8453C0C02228C14E002FF3C8 /* Assets.xcassets */; };
 		8453C0C42228C14E002FF3C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8453C0C22228C14E002FF3C8 /* LaunchScreen.storyboard */; };
+		845D426322B17E99004C57BE /* DetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845D426222B17E99004C57BE /* DetailVC.swift */; };
+		845D426522B17F86004C57BE /* VCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845D426422B17F86004C57BE /* VCExtension.swift */; };
 		8472B6EF2245B66B003E2B91 /* GifExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8472B6EE2245B66B003E2B91 /* GifExtension.swift */; };
 		848A831122A347C70052C089 /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A831022A347C70052C089 /* FavoritesVC.swift */; };
 		848A831322A347DF0052C089 /* FavoritesColView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A831222A347DF0052C089 /* FavoritesColView.swift */; };
@@ -39,6 +41,8 @@
 		8453C0C02228C14E002FF3C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8453C0C32228C14E002FF3C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8453C0C52228C14E002FF3C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		845D426222B17E99004C57BE /* DetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailVC.swift; sourceTree = "<group>"; };
+		845D426422B17F86004C57BE /* VCExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCExtension.swift; sourceTree = "<group>"; };
 		8472B6EE2245B66B003E2B91 /* GifExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifExtension.swift; sourceTree = "<group>"; };
 		848A831022A347C70052C089 /* FavoritesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
 		848A831222A347DF0052C089 /* FavoritesColView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesColView.swift; sourceTree = "<group>"; };
@@ -106,6 +110,14 @@
 			path = NewDoggie;
 			sourceTree = "<group>";
 		};
+		845D426122B17E72004C57BE /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				845D426222B17E99004C57BE /* DetailVC.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		848A830F22A347AC0052C089 /* Favorite */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				848A831522A6D22D0052C089 /* ThreadHelper.swift */,
+				845D426422B17F86004C57BE /* VCExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -135,10 +148,11 @@
 		84F6395D226B73B300027600 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				848A831422A6D21A0052C089 /* Extensions */,
+				845D426122B17E72004C57BE /* Detail */,
 				848A830F22A347AC0052C089 /* Favorite */,
 				84F63967226F938D00027600 /* Dog */,
 				84F63962226B748A00027600 /* Cat */,
+				848A831422A6D21A0052C089 /* Extensions */,
 				848A835E22B084710052C089 /* Helper.swift */,
 			);
 			path = View;
@@ -257,7 +271,9 @@
 				84F6396B226F93F200027600 /* DogColView.swift in Sources */,
 				848A831622A6D22D0052C089 /* ThreadHelper.swift in Sources */,
 				8472B6EF2245B66B003E2B91 /* GifExtension.swift in Sources */,
+				845D426322B17E99004C57BE /* DetailVC.swift in Sources */,
 				8453C0BF2228C14B002FF3C8 /* NewDoggie.xcdatamodeld in Sources */,
+				845D426522B17F86004C57BE /* VCExtension.swift in Sources */,
 				84F63964226B770600027600 /* CatAPI.swift in Sources */,
 				84F6395F226B73BE00027600 /* CatViewController.swift in Sources */,
 				848A835F22B084710052C089 /* Helper.swift in Sources */,

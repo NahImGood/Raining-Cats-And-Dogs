@@ -83,11 +83,12 @@
                     <connections>
                         <outlet property="favCollectionView" destination="7go-Dx-baG" id="ikt-aL-skz"/>
                         <outlet property="favSwapButton" destination="IJK-dW-gFn" id="c3b-1R-9Qn"/>
+                        <segue destination="pQ0-uh-PIo" kind="showDetail" identifier="detailVC" id="bGl-yg-Txz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4JF-dx-UNg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1020" y="851"/>
+            <point key="canvasLocation" x="1020" y="1178"/>
         </scene>
         <!--Dog-->
         <scene sceneID="Oza-36-FiF">
@@ -155,11 +156,12 @@
                     <tabBarItem key="tabBarItem" title="Dog" id="Qdl-nO-GBc"/>
                     <connections>
                         <outlet property="collectionImageView" destination="6Nc-GP-FL9" id="3h4-vc-WCI"/>
+                        <segue destination="pQ0-uh-PIo" kind="showDetail" identifier="detailVC" id="SWF-g7-JsZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Jx-PG-fKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1020" y="56.221889055472268"/>
+            <point key="canvasLocation" x="1020" y="376"/>
         </scene>
         <!--Cat-->
         <scene sceneID="VrH-Q0-XRO">
@@ -222,11 +224,41 @@
                     <tabBarItem key="tabBarItem" title="Cat" id="L6X-GR-UMB"/>
                     <connections>
                         <outlet property="collectionImageView" destination="wXk-Vf-ZwD" id="x5g-kz-I5W"/>
+                        <segue destination="pQ0-uh-PIo" kind="showDetail" identifier="detailVC" id="Wvl-eh-2XZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Msu-0C-KCF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1020" y="-609"/>
+        </scene>
+        <!--DetailVC-->
+        <scene sceneID="1z8-oc-hmJ">
+            <objects>
+                <viewController id="pQ0-uh-PIo" customClass="DetailVC" customModule="NewDoggie" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hEi-1L-CKc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Amp-Q3-BwN">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Amp-Q3-BwN" firstAttribute="top" secondItem="fY3-pm-ZOs" secondAttribute="top" id="JNp-tN-9kE"/>
+                            <constraint firstItem="Amp-Q3-BwN" firstAttribute="bottom" secondItem="fY3-pm-ZOs" secondAttribute="bottom" id="Mwx-Xb-iZh"/>
+                            <constraint firstItem="Amp-Q3-BwN" firstAttribute="trailing" secondItem="fY3-pm-ZOs" secondAttribute="trailing" id="XFT-WX-Vp9"/>
+                            <constraint firstItem="Amp-Q3-BwN" firstAttribute="leading" secondItem="fY3-pm-ZOs" secondAttribute="leading" id="qZs-9S-BYs"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fY3-pm-ZOs"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="Amp-Q3-BwN" id="f1i-Ew-edS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T4i-ME-VVC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2743" y="376"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="4Ba-se-Kcq">
@@ -245,10 +277,13 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z68-SJ-2hf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-474" y="2"/>
+            <point key="canvasLocation" x="-502" y="376"/>
         </scene>
     </scenes>
     <resources>
         <image name="placeholderimage" width="225" height="225"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="bGl-yg-Txz"/>
+    </inferredMetricsTieBreakers>
 </document>
