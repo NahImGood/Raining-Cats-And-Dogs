@@ -57,7 +57,7 @@ class DogViewController: DraggableViewController, UICollectionViewDelegateFlowLa
     }
     
     func activity(){
-        let fadeView:UIView = UIView()
+        let _:UIView = UIView()
         
         self.view.addSubview(activityView)
         activityView.hidesWhenStopped = true
@@ -65,10 +65,11 @@ class DogViewController: DraggableViewController, UICollectionViewDelegateFlowLa
         // start animating activity view
         activityView.startAnimating()
     }
+    
     //MARK - Loading Images
     func load20Images(){
         var i = 0
-        
+    
         for _ in i...15 {
             self.loadImage()
             i = i + 1
@@ -103,8 +104,8 @@ class DogViewController: DraggableViewController, UICollectionViewDelegateFlowLa
                     }
                 })
             } else {
-                //Sometimes the url is returned with weird chars for german words
-                //Its rare, and this secont api call is if the url cant be unwrapped it
+                //Sometimes the url is returned with weird chars for german words/german chars
+                //Its rare, and this second api call is if the url cant be unwrapped it
                 //calls again and recives a new url. the chance of both being bad is slim
                 //if you replace the bad char with a good one e(with dots over it) for a normal
                 //e it doest load the image. idk its dumb but it works.

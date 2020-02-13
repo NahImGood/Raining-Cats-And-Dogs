@@ -202,7 +202,9 @@ extension FavoritesVC: UICollectionViewDelegateFlowLayout {
 }
 
 //MARK: = CoreData
+
 extension FavoritesVC {
+    
     func setUpCoreData(){
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return
@@ -226,7 +228,6 @@ extension FavoritesVC {
             }
             favCollectionView.reloadData()
             
-            
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
@@ -244,5 +245,5 @@ extension FavoritesVC {
         } catch let error as NSError {
             print("Could not fetch. \(error), \(error.userInfo)")
         }
-    }
+    }// end of setUpCoreDate()
 }

@@ -20,6 +20,7 @@ class CatViewController: DraggableViewController {
     @IBOutlet weak var collectionImageView: UICollectionView!
     let refreshControl = UIRefreshControl()
     let activityView = UIActivityIndicatorView(style: .gray)
+    
     //MARK: Properties
     var catImages: [CatImage] = []
     var loadingData: Bool = false
@@ -44,7 +45,7 @@ class CatViewController: DraggableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        ///Checks for interentConection
+        //Checks for interentConection
         helper.checkInternetConnection()
 
     }
@@ -58,7 +59,10 @@ class CatViewController: DraggableViewController {
         // start animating activity view
         activityView.startAnimating()
     }
+    
     //MARK - Loading Images
+    // loads 20 images when you get to the end of the view
+    // loaded images.
     func load20Images(){
         var i = 0
         
@@ -69,6 +73,7 @@ class CatViewController: DraggableViewController {
         loadingData = false
     }
     
+    // calls to the api to load an image for the view controller.
     func loadImage(){
         let catCount = catImages.count + 14
         performOn(.Background){
@@ -168,6 +173,7 @@ extension CatViewController: UICollectionViewDelegate, UICollectionViewDataSourc
     
 }
 
+
 extension CatViewController: UICollectionViewDelegateFlowLayout {
    
     //MARK: - Longpress Detail
@@ -177,7 +183,6 @@ extension CatViewController: UICollectionViewDelegateFlowLayout {
         longPressPopUp.delegate = self
         longPressPopUp.delaysTouchesBegan = true
         collectionImageView.addGestureRecognizer(longPressPopUp)
-
         longPressPopUp.minimumPressDuration = 0.5
 
     }
